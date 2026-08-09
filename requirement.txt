@@ -1,3 +1,2 @@
-fastapi => "fastapi"
-asyncio => "asyncio"
-shapely => "shapely"
+fastapi = "fastapi"
+shapely = "shapely"
