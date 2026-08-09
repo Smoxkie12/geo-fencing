@@ -1,2 +1,2 @@
-fastapi = "fastapi"
-shapely = "shapely"
+fastapi >= 0.141.1
+shapely >= 2.1.2
