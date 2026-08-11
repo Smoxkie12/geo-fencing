@@ -268,6 +268,41 @@
       }
     );
   }
+
+
+  function postlocation() {
+    const lat = document.getElementById('lat').textContent;
+    const lng = document.getElementById('lng').textContent;
+    const accuracy = document.getElementById('accuracy').textContent;
+
+    if (lat === '-' || lng === '-' || accuracy === '-') {
+      alert('Please get your location first.');
+      return;
+    }
+
+    const data = {
+      latitude: parseFloat(lat),
+      longitude: parseFloat(lng),
+      accuracy: parseInt(accuracy.replace('± ', '').replace(' m', '')),
+      timestamp: new Date().toISOString()
+    };
+
+    fetch('/api/location', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+      alert('Location posted successfully!');
+    })
+    .catch(error => {
+      console.error('Error posting location:', error);
+      alert('Failed to post location.');
+    });
+  }
 </script>
 
 </body>

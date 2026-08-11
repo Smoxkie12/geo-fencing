@@ -46,23 +46,90 @@ geofencelib = "to use functions of it to perform geofencing operation"
 sample code for geofencing operation using fastapi and geofencing library
 import geofence_lib as geofence_lib
 
-class GeoFencing:
-    
-    def __init__(self, office_latitude, office_longitude, radius):
-        self.office_latitude = office_latitude
-        self.office_longitude = office_longitude
-        self.radius = radius
-
-    def is_within_geofence(self, user_latitude, user_longitude):
-        # Use the geofence_lib to check if the user's location is within the geofence
-        return geofence_lib.is_within_radius(
-            user_latitude,
-            user_longitude,
-            self.office_latitude,
-            self.office_longitude,
-            self.radius
-        )
-'''
-
-
 """
+
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import pandas as pd
+import math
+import sqlite3
+import time
+import requests
+import geopandas as gpd
+
+app = FastAPI()
+ab = requests.get("http://127.0.0.1:5500/geo.html")
+
+# branches = {
+#     "pune": {
+#         "Lantitude": 18.491256079845726,
+#         "Longitude": 73.85505103564057,
+#         "Radius" : 60
+#     }
+# }
+
+# @app.post("/geofence")
+# async def geofence(user_Location: dict):
+#       try:
+#          user_latitude = user_Location.get("latitude")
+#          user_longitude = user_Location.get("longitude")
+#          branch_name = user_Location.get("branch")
+   
+#          if branch_name not in branches:
+#                raise HTTPException(status_code=404, detail="Branch not found")
+   
+#          branch_info = branches[branch_name]
+#          branch_latitude = branch_info["Lantitude"]
+#          branch_longitude = branch_info["Longitude"]
+#          radius = branch_info["Radius"]
+   
+#          # Calculate distance using Haversine formula
+#          distance = geofence_lib.calculate_distance(user_latitude, user_longitude, branch_latitude, branch_longitude)
+   
+#          if distance <= radius:
+#                return {"status": "success", "message": "User is within the geofence."}
+#          else:
+#                return {"status": "failure", "message": "User is outside the geofence."}
+   
+#       except Exception as e:
+#          raise HTTPException(status_code=500, detail=str(e))
+
+# def calculate_distance(lat1, lon1, lat2, lon2):
+#     # Haversine formula to calculate distance between two points on the Earth
+#     R = 6371000  # Radius of the Earth in meters
+#     phi1 = math.radians(lat1)
+#     phi2 = math.radians(lat2)
+#     delta_phi = math.radians(lat2 - lat1)
+#     delta_lambda = math.radians(lon2 - lon1)
+
+#     a = math.sin(delta_phi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(delta_lambda / 2) ** 2
+#     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a ))
+#       distance = R * c
+#       return distance
+
+# @app.get("/branches")
+# async def get_branches():
+#     return branches
+
+# def add_branch(branch_name: str, latitude: float, longitude: float, radius: float):
+#     branches[branch_name] = {
+#         "Lantitude": latitude,
+#         "Longitude": longitude,
+#         "Radius": radius
+#     } 
+
+# def remove_branch(branch_name: str):
+#     if branch_name in branches:
+#         del branches[branch_name]
+#     else:
+#         raise ValueError("Branch not found") 
+
+# def update_branch(branch_name: str, latitude: float, longitude: float, radius: float):
+#     if branch_name in branches:
+#         branches[branch_name] = {
+#             "Lantitude": latitude,
+#             "Longitude": longitude,
+#             "Radius": radius
+#         }
+#     else:
+#         raise ValueError("Branch not found")
