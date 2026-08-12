@@ -1,0 +1,63 @@
+{
+  "office": {
+    "latitude": 18.491256079845726,
+    "longitude": 73.85505103564057,
+    "radius": 60
+  },
+  "locations": [
+    {
+      "latitude": 28.635975,
+      "longitude": 77.037905,
+      "accuracy": 323,
+      "timestamp": "2026-08-12T06:59:30.689Z",
+      "distance_m": 1173575.7,
+      "radius_m": 60,
+      "inside": false
+    },
+    {
+      "latitude": 28.635975,
+      "longitude": 77.037905,
+      "accuracy": 323,
+      "timestamp": "2026-08-12T07:00:52.083Z",
+      "distance_m": 1173575.7,
+      "radius_m": 60,
+      "inside": false
+    },
+    {
+      "latitude": 28.635975,
+      "longitude": 77.037905,
+      "accuracy": 323,
+      "timestamp": "2026-08-12T07:01:12.489Z",
+      "distance_m": 1173575.7,
+      "radius_m": 60,
+      "inside": false
+    },
+    {
+      "latitude": 28.635975,
+      "longitude": 77.037905,
+      "accuracy": 323,
+      "timestamp": "2026-08-12T07:01:22.956Z",
+      "distance_m": 1173575.7,
+      "radius_m": 60,
+      "inside": false
+    },
+    {
+      "latitude": 28.635975,
+      "longitude": 77.037905,
+      "accuracy": 323,
+      "timestamp": "2026-08-12T07:01:26.260Z",
+      "distance_m": 1173575.7,
+      "radius_m": 60,
+      "inside": false
+    },
+    {
+      "latitude": 28.636161,
+      "longitude": 77.037818,
+      "accuracy": 292,
+      "timestamp": "2026-08-12T07:02:22.177Z",
+      "distance_m": 1173593.07,
+      "radius_m": 60,
+      "inside": false
+    }
+  ]
+}
