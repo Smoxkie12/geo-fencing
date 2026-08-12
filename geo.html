@@ -57,6 +57,10 @@
     transition: background 0.2s;
   }
 
+  button + button {
+    margin-top: 12px;
+  }
+
   button:hover {
     background: #2563eb;
   }
@@ -170,6 +174,7 @@
   <p class="subtitle">Standalone test page — walk around your office and record readings</p>
 
   <button id="getLocationBtn" onclick="getLocation()">Get My Location</button>
+  <button id="checkLocationBtn" onclick="postLocation()" disabled>Save + Check Location</button>
 
   <div class="status" id="status"></div>
 
@@ -201,6 +206,7 @@
 <script>
   function getLocation() {
     const btn = document.getElementById('getLocationBtn');
+    const checkBtn = document.getElementById('checkLocationBtn');
     const status = document.getElementById('status');
     const results = document.getElementById('results');
 
@@ -208,6 +214,7 @@
     status.className = 'status show loading';
     status.textContent = '⏳ Fetching your location... allow permission if prompted';
     btn.disabled = true;
+    checkBtn.disabled = true;
 
     if (!navigator.geolocation) {
       status.className = 'status show error';
@@ -238,11 +245,14 @@
         document.getElementById('timestamp').textContent =
           'Captured at ' + new Date(position.timestamp).toLocaleTimeString();
 
-        status.classList.remove('show');
+        status.className = 'status show loading';
+        status.textContent = '✅ Location captured. Click Save + Check Location to continue.';
         results.classList.add('show');
         btn.disabled = false;
+        checkBtn.disabled = false;
       },
       (error) => {
+        const checkBtn = document.getElementById('checkLocationBtn');
         status.className = 'status show error';
         let message = '❌ ';
         switch(error.code) {
@@ -260,6 +270,7 @@
         }
         status.textContent = message;
         btn.disabled = false;
+        checkBtn.disabled = true;
       },
       {
         enableHighAccuracy: true,
@@ -270,7 +281,9 @@
   }
 
 
-  function postlocation() {
+  function postLocation() {
+    const btn = document.getElementById('checkLocationBtn');
+    const status = document.getElementById('status');
     const lat = document.getElementById('lat').textContent;
     const lng = document.getElementById('lng').textContent;
     const accuracy = document.getElementById('accuracy').textContent;
@@ -280,14 +293,18 @@
       return;
     }
 
+    btn.disabled = true;
+    status.className = 'status show loading';
+    status.textContent = '⏳ Saving and checking location...';
+
     const data = {
       latitude: parseFloat(lat),
       longitude: parseFloat(lng),
-      accuracy: parseInt(accuracy.replace('± ', '').replace(' m', '')),
+      accuracy: parseInt(accuracy.replace('± ', '').replace(' m', ''), 10),
       timestamp: new Date().toISOString()
     };
 
-    fetch('/api/location', {
+    fetch('/api/check-location', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -296,13 +313,23 @@
     })
     .then(response => response.json())
     .then(result => {
-      alert('Location posted successfully!');
+      if (result.inside) {
+        status.className = 'status show loading';
+        status.textContent = `✅ Permit: you are ${result.distance_m}m from the office (radius ${result.radius_m}m).`;
+      } else {
+        status.className = 'status show error';
+        status.textContent = `❌ Denied: you are ${result.distance_m}m from the office (radius ${result.radius_m}m).`;
+      }
+      btn.disabled = false;
     })
     .catch(error => {
       console.error('Error posting location:', error);
-      alert('Failed to post location.');
+      status.className = 'status show error';
+      status.textContent = '❌ Failed to save or validate location. Check the server and try again.';
+      btn.disabled = false;
     });
   }
+
 </script>
 
 </body>
