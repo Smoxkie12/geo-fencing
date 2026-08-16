@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .card {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #f8fafc;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 24px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  button + button {
+    margin-top: 12px;
+  }
+
+  button:hover {
+    background: #2563eb;
+  }
+
+  button:disabled {
+    background: #475569;
+    cursor: not-allowed;
+  }
+
+  .status {
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    display: none;
+  }
+
+  .status.show {
+    display: block;
+  }
+
+  .status.loading {
+    background: #1e3a5f;
+    color: #93c5fd;
+  }
+
+  .status.error {
+    background: #451a1a;
+    color: #fca5a5;
+  }
+
+  .results {
+    margin-top: 18px;
+    display: none;
+  }
+
+  .results.show {
+    display: block;
+  }
+
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #334155;
+  }
+
+  .result-row:last-child {
+    border-bottom: none;
+  }
+
+  .result-label {
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  .result-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f8fafc;
+    font-family: 'SF Mono', Monaco, monospace;
+  }
+
+  .accuracy-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .accuracy-good {
+    background: #14532d;
+    color: #86efac;
+  }
+
+  .accuracy-medium {
+    background: #713f12;
+    color: #fde047;
+  }
+
+  .accuracy-poor {
+    background: #7f1d1d;
+    color: #fca5a5;
+  }
+
+  .timestamp {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #64748b;
+    text-align: center;
+  }
+
+  .hint {
+    margin-top: 20px;
+    padding: 12px;
+    background: #0f2942;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #7dd3fc;
+    line-height: 1.5;
+  }
