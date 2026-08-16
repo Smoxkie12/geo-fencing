@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation Test - HRM Geofencing</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>📍 Location Test</h1>
+        <p class="subtitle">Standalone test page — walk around your office and record readings</p>
+
+        <button id="getLocationBtn" onclick="getLocation()">Get My Location</button>
+        <button id="checkLocationBtn" onclick="postLocation()" disabled>Save + Check Location</button>
+
+        <div class="status" id="status"></div>
+
+        <div class="results" id="results">
+            <div class="result-row">
+                <span class="result-label">Latitude</span>
+                <span class="result-value" id="lat">-</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">Longitude</span>
+                <span class="result-value" id="lng">-</span>
+            </div>
+            <div class="result-row">
+                <span class="result-label">Accuracy</span>
+                <div style="text-align: right;">
+                    <span class="result-value" id="accuracy">-</span>
+                    <div id="accuracyBadge"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timestamp" id="timestamp"></div>
+
+        <div class="hint">
+            <strong>Tip:</strong> Test this from different spots — inside the office, near windows, in the parking lot,
+            and 200m away. Note the accuracy value each time. This tells you what threshold to use later.
+        </div>
+    </div>
+
+</body>
+
+</html>
