@@ -3,15 +3,16 @@ import json
 import math
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_FILE = BASE_DIR / "database.json"
-HTML_FILE = BASE_DIR / "index.html"
-# CSS_FILE = BASE_DIR / "style.css"
-# SCRIPT_FILE = BASE_DIR / "script.js"
+HTML_FILE = BASE_DIR / "Fronted/index.html"
+STATIC_DIR = BASE_DIR / "Fronted"
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 class LocationPayload(BaseModel):
     latitude: float

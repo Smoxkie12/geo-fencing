@@ -58,6 +58,15 @@
       "distance_m": 1173593.07,
       "radius_m": 60,
       "inside": false
+    },
+    {
+      "latitude": 28.636052,
+      "longitude": 77.03778,
+      "accuracy": 219,
+      "timestamp": "2026-08-16T13:33:04.416Z",
+      "distance_m": 1173580.4,
+      "radius_m": 60,
+      "inside": false
     }
   ]
 }
