@@ -7,7 +7,9 @@ from pydantic import BaseModel
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_FILE = BASE_DIR / "database.json"
-HTML_FILE = BASE_DIR / "geo.html"
+HTML_FILE = BASE_DIR / "index.html"
+# CSS_FILE = BASE_DIR / "style.css"
+# SCRIPT_FILE = BASE_DIR / "script.js"
 
 app = FastAPI()
 
